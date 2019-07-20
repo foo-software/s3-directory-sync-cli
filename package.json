@@ -1,0 +1,24 @@
+{
+  "name": "@foo-software/s3-directory-sync-cli",
+  "version": "0.0.1",
+  "description": "A CLI to sync a local directory with an AWS S3 bucket.",
+  "bin": {
+    "s3-directory-sync": "bin/sync.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/foo-software/s3-directory-sync-cli.git"
+  },
+  "author": "Adam Henson <adamhenson1979@gmail.com> (https://github.com/adamhenson)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/foo-software/s3-directory-sync-cli/issues"
+  },
+  "homepage": "https://github.com/foo-software/s3-directory-sync-cli#readme",
+  "dependencies": {
+    "s3": "^4.4.0"
+  }
+}

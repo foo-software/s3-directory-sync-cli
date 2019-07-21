@@ -1,10 +1,10 @@
 #! /usr/bin/env node
 const s3 = require('s3');
 const ProgressBar = require('cli-progress-bar');
-const package = require('../package.json');
+const info = require('../../package.json');
 const { convertOptionsFromArguments } = require('../helpers/arguments');
 
-console.log(`${package.name}: sync starting...`);
+console.log(`${info.name}: sync starting...`);
 
 // default options from environment variables
 const defaultOptions = {
@@ -55,6 +55,6 @@ uploader.on('progress', () => {
 
 uploader.on('end', () => {
   bar.hide();
-  console.log(`${package.name}: sync completed ☀️ 🌴`);
-  console.log(`${package.name}: brought to you by Foo (https://www.foo.software)`);
+  console.log(`${info.name}: sync completed ☀️ 🌴`);
+  console.log(`${info.name}: brought to you by Foo (https://www.foo.software)`);
 });

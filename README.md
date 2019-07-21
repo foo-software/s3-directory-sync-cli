@@ -6,7 +6,7 @@
 
 > For use within a project:
 ```bash
-npm install @foo-software/s3-directory-sync-cli
+npm install @foo-software/s3-directory-sync-cli --save-dev
 ```
 
 > For global use:

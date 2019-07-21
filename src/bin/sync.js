@@ -58,6 +58,6 @@ uploader.on("progress", () => {
 
 uploader.on("end", () => {
   bar.hide();
-  console.log(`${name}: sync completed ☀️ 🌴`);
+  console.log(`${name}: ☀️ 🌴 sync completed`);
   console.log(`${name}: brought to you by Foo (https://www.foo.software)`);
 });

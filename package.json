@@ -5,6 +5,9 @@
   "bin": {
     "s3-directory-sync": "dist/bin/sync.js"
   },
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "clean": "rimraf dist",
     "build": "babel ./src --out-dir dist",

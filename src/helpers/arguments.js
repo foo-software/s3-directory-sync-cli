@@ -1,5 +1,5 @@
 // if the value is assigned as an argument get that... otherwise `undefined`
-const getArgument = name => {
+export const getArgument = name => {
   const index = process.argv.indexOf(`--${name}`);
 
   if (index < 0) {

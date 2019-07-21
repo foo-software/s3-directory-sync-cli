@@ -46,6 +46,11 @@
     "prettier": "1.18.2",
     "rimraf": "^2.6.3"
   },
+  "jest": {
+    "modulePathIgnorePatterns": [
+      "<rootDir>/dist/"
+    ]
+  },
   "lint-staged": {
     "src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
       "prettier --single-quote --write",

@@ -39,17 +39,6 @@ s3-directory-sync \
 
 Parameters can either be passed in the command line as arguments or as environment variables.
 
-S3_DIRECTORY_SYNC_ACCESS_KEY_ID: process.env.S3_DIRECTORY_SYNC_ACCESS_KEY_ID,
-  S3_DIRECTORY_SYNC_ACL: process.env.S3_DIRECTORY_SYNC_ACL || 'public-read',
-  S3_DIRECTORY_SYNC_BUCKET: process.env.S3_DIRECTORY_SYNC_BUCKET,
-  S3_DIRECTORY_SYNC_LOCAL_DIRECTORY:
-    process.env.S3_DIRECTORY_SYNC_LOCAL_DIRECTORY,
-  S3_DIRECTORY_SYNC_REMOTE_DIRECTORY:
-    process.env.S3_DIRECTORY_SYNC_REMOTE_DIRECTORY || '',
-  S3_DIRECTORY_SYNC_SECRET_ACCESS_KEY:
-    process.env.S3_DIRECTORY_SYNC_SECRET_ACCESS_KEY,
-  S3_DIRECTORY_SYNC_STRICT: process.env.S3_DIRECTORY_SYNC_STRICT || false
-
 <table>
   <tr>
     <th>Name</th>

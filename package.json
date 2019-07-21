@@ -21,6 +21,15 @@
     "url": "https://github.com/foo-software/s3-directory-sync-cli/issues"
   },
   "homepage": "https://github.com/foo-software/s3-directory-sync-cli#readme",
+  "keywords": [
+    "sync",
+    "aws",
+    "s3",
+    "sync",
+    "upload",
+    "uploader",
+    "cli"
+  ],
   "dependencies": {
     "cli-progress-bar": "^1.0.1",
     "s3": "^4.4.0"

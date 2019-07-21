@@ -6,12 +6,12 @@
 
 > For use within a project:
 ```bash
-npm install @foo-software/lighthouse-persist
+npm install @foo-software/s3-directory-sync-cli
 ```
 
 > For global use:
 ```bash
-npm install @foo-software/lighthouse-persist -g
+npm install @foo-software/s3-directory-sync-cli -g
 ```
 
 ## Usage

@@ -1,10 +1,10 @@
 #! /usr/bin/env node
-const s3 = require('s3');
-const ProgressBar = require('cli-progress-bar');
-const info = require('../../package.json');
-const { convertOptionsFromArguments } = require('../helpers/arguments');
+import { createClient } from 's3';
+import ProgressBar from 'cli-progress-bar';
+import { name } from '../../package.json';
+import { convertOptionsFromArguments } from '../helpers/arguments';
 
-console.log(`${info.name}: sync starting...`);
+console.log(`${name}: sync starting...`);
 
 // default options from environment variables
 const defaultOptions = {
@@ -21,7 +21,7 @@ const defaultOptions = {
 const options = convertOptionsFromArguments(defaultOptions);
 
 // create the AWS S3 client
-const client = s3.createClient({
+const client = createClient({
   s3Options: {
     accessKeyId: options.S3_DIRECTORY_SYNC_ACCESS_KEY_ID,
     secretAccessKey: options.S3_DIRECTORY_SYNC_SECRET_ACCESS_KEY,
@@ -55,6 +55,6 @@ uploader.on('progress', () => {
 
 uploader.on('end', () => {
   bar.hide();
-  console.log(`${info.name}: sync completed ☀️ 🌴`);
-  console.log(`${info.name}: brought to you by Foo (https://www.foo.software)`);
+  console.log(`${name}: sync completed ☀️ 🌴`);
+  console.log(`${name}: brought to you by Foo (https://www.foo.software)`);
 });

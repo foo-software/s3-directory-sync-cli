@@ -9,7 +9,7 @@ const getArgument = (name) => {
   return process.argv[index + 1];
 };
 
-module.exports.convertOptionsFromArguments = options => Object.keys(options)
+export const convertOptionsFromArguments = options => Object.keys(options)
   .reduce((accumulator, current) => {
     // get the argument value
     const argumentValue = getArgument(current);

@@ -19,6 +19,10 @@ const defaultOptions = {
   S3_DIRECTORY_SYNC_BUCKET: process.env.S3_DIRECTORY_SYNC_BUCKET,
   S3_DIRECTORY_SYNC_LOCAL_DIRECTORY:
     process.env.S3_DIRECTORY_SYNC_LOCAL_DIRECTORY,
+  S3_DIRECTORY_SYNC_PROGRESS:
+    typeof process.env.S3_DIRECTORY_SYNC_PROGRESS === 'undefined'
+      ? true
+      : process.env.S3_DIRECTORY_SYNC_PROGRESS,
   S3_DIRECTORY_SYNC_REMOTE_DIRECTORY:
     process.env.S3_DIRECTORY_SYNC_REMOTE_DIRECTORY || '',
   S3_DIRECTORY_SYNC_SECRET_ACCESS_KEY:
@@ -52,7 +56,7 @@ const s3 = new AWS.S3({
 });
 
 // display a progress bar
-const bar = new ProgressBar();
+const bar = !options.S3_DIRECTORY_SYNC_PROGRESS ? undefined : new ProgressBar();
 
 const rootFolder = path.resolve();
 
@@ -111,13 +115,15 @@ const rootFolder = path.resolve();
 
     const percentCompleted = (index + 1) / filesToUpload.length;
 
-    if (typeof percentCompleted === 'number') {
+    if (bar && typeof percentCompleted === 'number') {
       bar.show('uploaded', percentCompleted);
       bar.pulse('total');
     }
   }
 
-  bar.hide();
+  if (bar) {
+    bar.hide();
+  }
 
   // if we have a difference of files between the remote bucket
   // and local file directory

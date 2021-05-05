@@ -1,6 +1,7 @@
 #! /usr/bin/env node
 import AWS from 'aws-sdk';
 import fs from 'fs';
+import mime from 'mime-types';
 import path from 'path';
 import ProgressBar from 'cli-progress-bar';
 import { name, version } from '../../package.json';
@@ -17,6 +18,10 @@ const defaultOptions = {
   S3_DIRECTORY_SYNC_ACCESS_KEY_ID: process.env.S3_DIRECTORY_SYNC_ACCESS_KEY_ID,
   S3_DIRECTORY_SYNC_ACL: process.env.S3_DIRECTORY_SYNC_ACL || 'public-read',
   S3_DIRECTORY_SYNC_BUCKET: process.env.S3_DIRECTORY_SYNC_BUCKET,
+  S3_DIRECTORY_SYNC_DERIVE_CONTENT_TYPE:
+    typeof process.env.S3_DIRECTORY_SYNC_DERIVE_CONTENT_TYPE === 'undefined'
+      ? true
+      : process.env.S3_DIRECTORY_SYNC_DERIVE_CONTENT_TYPE,
   S3_DIRECTORY_SYNC_LOCAL_DIRECTORY:
     process.env.S3_DIRECTORY_SYNC_LOCAL_DIRECTORY,
   S3_DIRECTORY_SYNC_PROGRESS:
@@ -99,13 +104,22 @@ const rootFolder = path.resolve();
         : `${options.S3_DIRECTORY_SYNC_REMOTE_DIRECTORY}/`
     );
 
+    const params = {
+      ACL: options.S3_DIRECTORY_SYNC_ACL,
+      Bucket: options.S3_DIRECTORY_SYNC_BUCKET,
+      Body: fs.readFileSync(file),
+      Key
+    };
+
+    if (options.S3_DIRECTORY_SYNC_DERIVE_CONTENT_TYPE) {
+      const contentType = mime.lookup(file);
+      if (contentType) {
+        params.ContentType = contentType;
+      }
+    }
+
     await upload({
-      params: {
-        ACL: options.S3_DIRECTORY_SYNC_ACL,
-        Bucket: options.S3_DIRECTORY_SYNC_BUCKET,
-        Body: fs.readFileSync(file),
-        Key
-      },
+      params,
       s3
     });
 

@@ -1,6 +1,6 @@
 {
   "name": "@foo-software/s3-directory-sync-cli",
-  "version": "1.0.2",
+  "version": "2.0.0",
   "description": "A CLI to sync a local directory with an AWS S3 bucket.",
   "bin": {
     "s3-directory-sync": "dist/bin/sync.js"

@@ -81,6 +81,11 @@ Parameters can either be passed in the command line as arguments or as environme
     <td><code>''</code></td>
   </tr>
   <tr>
+    <td><code>S3_DIRECTORY_SYNC_REMOVE_HTML_EXTENSIONS/code></td>
+    <td>If <code>true</code> HTML files will be uploaded with the `.html` extension omitted from the `Key`. This can be helpful if hosting an S3 website.</td>
+    <td><code>false</code></td>
+  </tr>
+  <tr>
     <td><code>S3_DIRECTORY_SYNC_ACL</code></td>
     <td>The <a href="https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3.html">Access Control Policy</a> as documented.</td>
     <td><code>public-read</code></td>

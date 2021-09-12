@@ -19,20 +19,17 @@ const defaultOptions = {
   S3_DIRECTORY_SYNC_ACL: process.env.S3_DIRECTORY_SYNC_ACL || 'public-read',
   S3_DIRECTORY_SYNC_BUCKET: process.env.S3_DIRECTORY_SYNC_BUCKET,
   S3_DIRECTORY_SYNC_DERIVE_CONTENT_TYPE:
-    typeof process.env.S3_DIRECTORY_SYNC_DERIVE_CONTENT_TYPE === 'undefined'
-      ? true
-      : process.env.S3_DIRECTORY_SYNC_DERIVE_CONTENT_TYPE,
+    process.env.S3_DIRECTORY_SYNC_DERIVE_CONTENT_TYPE === 'true',
   S3_DIRECTORY_SYNC_LOCAL_DIRECTORY:
     process.env.S3_DIRECTORY_SYNC_LOCAL_DIRECTORY,
-  S3_DIRECTORY_SYNC_PROGRESS:
-    typeof process.env.S3_DIRECTORY_SYNC_PROGRESS === 'undefined'
-      ? true
-      : process.env.S3_DIRECTORY_SYNC_PROGRESS,
+  S3_DIRECTORY_SYNC_PROGRESS: process.env.S3_DIRECTORY_SYNC_PROGRESS === 'true',
   S3_DIRECTORY_SYNC_REMOTE_DIRECTORY:
     process.env.S3_DIRECTORY_SYNC_REMOTE_DIRECTORY || '',
+  S3_DIRECTORY_SYNC_REMOVE_HTML_EXTENSIONS:
+    process.env.S3_DIRECTORY_SYNC_REMOVE_HTML_EXTENSIONS === 'true',
   S3_DIRECTORY_SYNC_SECRET_ACCESS_KEY:
     process.env.S3_DIRECTORY_SYNC_SECRET_ACCESS_KEY,
-  S3_DIRECTORY_SYNC_STRICT: process.env.S3_DIRECTORY_SYNC_STRICT || false
+  S3_DIRECTORY_SYNC_STRICT: process.env.S3_DIRECTORY_SYNC_STRICT === 'true'
 };
 
 // override options with any that are passed in as arguments
@@ -97,12 +94,16 @@ const rootFolder = path.resolve();
   }
 
   for (const [index, file] of filesToUpload.entries()) {
-    const Key = file.replace(
+    let Key = file.replace(
       `${rootFolder}/${options.S3_DIRECTORY_SYNC_LOCAL_DIRECTORY}/`,
       !options.S3_DIRECTORY_SYNC_REMOTE_DIRECTORY
         ? ''
         : `${options.S3_DIRECTORY_SYNC_REMOTE_DIRECTORY}/`
     );
+
+    if (options.S3_DIRECTORY_SYNC_REMOVE_HTML_EXTENSIONS) {
+      Key = Key.replace('.html', '');
+    }
 
     const params = {
       ACL: options.S3_DIRECTORY_SYNC_ACL,

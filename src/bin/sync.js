@@ -27,6 +27,8 @@ const defaultOptions = {
     process.env.S3_DIRECTORY_SYNC_REMOTE_DIRECTORY || '',
   S3_DIRECTORY_SYNC_REMOVE_HTML_EXTENSIONS:
     process.env.S3_DIRECTORY_SYNC_REMOVE_HTML_EXTENSIONS === 'true',
+  S3_DIRECTORY_SYNC_REMOVE_HTML_EXTENSIONS_EXCLUDE:
+    process.env.S3_DIRECTORY_SYNC_REMOVE_HTML_EXTENSIONS_EXCLUDE,
   S3_DIRECTORY_SYNC_SECRET_ACCESS_KEY:
     process.env.S3_DIRECTORY_SYNC_SECRET_ACCESS_KEY,
   S3_DIRECTORY_SYNC_STRICT: process.env.S3_DIRECTORY_SYNC_STRICT === 'true'
@@ -101,8 +103,25 @@ const rootFolder = path.resolve();
         : `${options.S3_DIRECTORY_SYNC_REMOTE_DIRECTORY}/`
     );
 
-    if (options.S3_DIRECTORY_SYNC_REMOVE_HTML_EXTENSIONS) {
-      Key = Key.replace('.html', '');
+    if (
+      options.S3_DIRECTORY_SYNC_REMOVE_HTML_EXTENSIONS &&
+      Key.includes('.html')
+    ) {
+      let shouldRemoveExtension = true;
+      if (options.S3_DIRECTORY_SYNC_REMOVE_HTML_EXTENSIONS_EXCLUDE) {
+        const excludes = options.S3_DIRECTORY_SYNC_REMOVE_HTML_EXTENSIONS_EXCLUDE.split(
+          ','
+        );
+        for (const excludeFile of excludes) {
+          if (excludeFile === Key) {
+            shouldRemoveExtension = false;
+            break;
+          }
+        }
+      }
+      if (shouldRemoveExtension) {
+        Key = Key.replace('.html', '');
+      }
     }
 
     const params = {

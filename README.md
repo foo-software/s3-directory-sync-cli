@@ -81,9 +81,14 @@ Parameters can either be passed in the command line as arguments or as environme
     <td><code>''</code></td>
   </tr>
   <tr>
-    <td><code>S3_DIRECTORY_SYNC_REMOVE_HTML_EXTENSIONS/code></td>
+    <td><code>S3_DIRECTORY_SYNC_REMOVE_HTML_EXTENSIONS</code></td>
     <td>If <code>true</code> HTML files will be uploaded with the `.html` extension omitted from the `Key`. This can be helpful if hosting an S3 website.</td>
     <td><code>false</code></td>
+  </tr>
+  <tr>
+    <td><code>S3_DIRECTORY_SYNC_REMOVE_HTML_EXTENSIONS_EXCLUDE</code></td>
+    <td>An escape hatch to the above <code>S3_DIRECTORY_SYNC_REMOVE_HTML_EXTENSIONS</code> option. In the future, perhaps we could make this into a regex, but for now you can populate this value with a comma-separated list of paths relative to the local directory. Example <code>static/html/iframe.html,static/html/iframe2.html</code> (no glob pattern or dot prefix).</td>
+    <td><code>''</code></td>
   </tr>
   <tr>
     <td><code>S3_DIRECTORY_SYNC_ACL</code></td>

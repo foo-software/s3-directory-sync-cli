@@ -59,4 +59,13 @@ describe('convertOptionsFromArguments', () => {
     });
     expect(actual).toEqual(expected);
   });
+
+  it('should preserve boolean default values when also not set as flag params', () => {
+    const payload = {
+      S3_DIRECTORY_SYNC_DERIVE_CONTENT_TYPE: false,
+      S3_DIRECTORY_SYNC_PROGRESS: false
+    };
+    const actual = convertOptionsFromArguments(payload);
+    expect(actual).toEqual(payload);
+  });
 });

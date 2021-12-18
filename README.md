@@ -58,7 +58,7 @@ Parameters can either be passed in the command line as arguments or as environme
   <tr>
     <td><code>S3_DIRECTORY_SYNC_DERIVE_CONTENT_TYPE</code></td>
     <td>If set to <code>true</code> will derive `Content-Type` metadata from file extension via <a href="https://www.npmjs.com/package/mime-types"><code>mime-types</code></a></td>
-    <td><code>true</code></td>
+    <td><code>false</code></td>
   </tr>
   <tr>
     <td><code>S3_DIRECTORY_SYNC_SECRET_ACCESS_KEY</code></td>
@@ -73,7 +73,7 @@ Parameters can either be passed in the command line as arguments or as environme
   <tr>
     <td><code>S3_DIRECTORY_SYNC_PROGRESS</code></td>
     <td>If set to <code>true</code> the CLI will display a progress bar. Might be buggy in CI which justifies this option.</td>
-    <td><code>true</code></td>
+    <td><code>false</code></td>
   </tr>
   <tr>
     <td><code>S3_DIRECTORY_SYNC_REMOTE_DIRECTORY</code></td>

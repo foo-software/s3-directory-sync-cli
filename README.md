@@ -1,3 +1,9 @@
+## DEPRECATED
+
+**This project has been deprecated and is no longer maintained** in favor of projects like [s3-sync-client](https://github.com/jeanbmar/s3-sync-client) which use the [AWS CLI command](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/s3/sync.html) directly. Comparatively, the linked project has much higher adoption and volume of maintainers / contributors. One reason for dropping support of this project is its major downfall in its lack of support for compression as noted in #12.
+
+Please consider using [s3-sync-client](https://github.com/jeanbmar/s3-sync-client) instead.
+
 # `@foo-software/s3-directory-sync-cli`
 
 > A CLI to sync a local directory with an AWS S3 bucket. Example usage could involve an automated deployment of a serverless web app. This command essentially uploads a folder to a bucket.
